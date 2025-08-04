@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Become a Service Provider | DriveConnect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    :root {
+      --primary-blue: #1e40af;
+      --secondary-blue: #3b82f6;
+      --accent-blue: #60a5fa;
+      --light-blue: #f8fafc;
+      --dark-blue: #1e293b;
+      --white: #fff;
+      --gray: #f1f5f9;
+      --gradient-blue: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-light: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fef7f0 0%, #fde8d4 100%);
+      color: var(--dark-blue);
+      margin: 0;
+      overflow-x: hidden;
+    }
+    
+    /* Mobile background improvement */
+    @media (max-width: 768px) {
+      body {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+    }
+    
+    /* Navbar enhanced styling */
+    .navbar-enhanced {
+      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+      overflow: visible;
+    }
+    
+    /* Global container constraints */
+    .max-w-7xl, .max-w-4xl {
+      box-sizing: border-box;
+      width: 100%;
+    }
+    
+    /* Ensure all sections are properly contained */
+    .benefits, .how-it-works, .requirements, .earnings, .form-section {
+      overflow: hidden;
+    }
+    
+    /* Ensure hamburger is always visible */
+    .hamburger {
+      position: relative;
+      z-index: 60;
+      margin-left: auto;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 12px 32px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--white);
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover, .btn-primary:focus {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+    .navbar {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: var(--white);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .navbar .nav-link {
+      color: var(--white);
+      font-weight: 500;
+      margin-left: 2rem;
+      transition: color 0.2s;
+      text-decoration: none;
+      position: relative;
+    }
+    .navbar .nav-link:after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--secondary-blue);
+      transition: width .2s;
+      position: absolute;
+      bottom: -4px; left: 0;
+    }
+    .navbar .nav-link:hover:after, .navbar .nav-link:focus:after {
+      width: 100%;
+    }
+    .navbar .nav-link:hover, .navbar .nav-link:focus {
+      color: var(--secondary-blue);
+    }
+    .hero {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: var(--white);
+      padding: 120px 0 60px 0;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .hero-content {
+      flex: 1;
+      min-width: 300px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .hero-title {
+      font-size: 2.7rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .hero-desc {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #fff;
+      opacity: 0.85;
+      margin-bottom: 32px;
+    }
+    .hero-image {
+      flex: 1;
+      max-width: 500px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      border: 4px solid var(--secondary-blue);
+      min-width: 300px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (min-width: 900px) {
+      .hero-inner {
+        flex-direction: row;
+        text-align: left;
+        gap: 60px;
+      }
+      .hero-content {
+        text-align: left;
+      }
+    }
+    
+    /* Benefits Section */
+    .benefits {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .benefit-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid transparent;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .benefit-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+      border-color: var(--secondary-blue);
+    }
+    .benefit-card i {
+      font-size: 3rem;
+      color: var(--secondary-blue);
+      margin-bottom: 20px;
+    }
+    
+    /* How It Works Section */
+    .how-it-works {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: var(--white);
+    }
+    .step-card {
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      transition: transform 0.3s;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .step-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--secondary-blue);
+    }
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    
+    /* Requirements Section */
+    .requirements {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .requirement-item {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--secondary-blue);
+      transition: transform 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .requirement-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.1);
+    }
+    .requirement-item i {
+      color: var(--secondary-blue);
+      margin-right: 10px;
+    }
+    
+    /* Earnings Section */
+    .earnings {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: var(--white);
+    }
+    .earning-card {
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .earning-card .amount {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+    
+    /* Form Styles */
+    .form-section {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      width: 100%;
+    }
+    
+    /* Mobile form improvements */
+    @media (max-width: 768px) {
+      .form-container {
+        margin: 20px;
+        padding: 20px;
+        border-radius: 12px;
+        max-width: calc(100% - 40px);
+      }
+      
+      .form-row {
+        padding: 10px 12px;
+        margin-bottom: 15px;
+      }
+      
+      .form-row input,
+      .form-row textarea,
+      .form-row select {
+        font-size: 1rem;
+        padding: 8px 0;
+      }
+      
+      .btn-primary {
+        padding: 12px 24px;
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .form-container {
+        margin: 10px;
+        padding: 15px;
+        border-radius: 10px;
+        max-width: calc(100% - 20px);
+      }
+      
+      .form-row {
+        padding: 8px 10px;
+        margin-bottom: 12px;
+      }
+      
+      .form-row input,
+      .form-row textarea,
+      .form-row select {
+        font-size: 0.95rem;
+        padding: 6px 0;
+      }
+      
+      .btn-primary {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+      }
+    }
+    .form-row {
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 8px 14px;
+      border: 1.5px solid #e0e0e0;
+      transition: border 0.2s, box-shadow 0.2s;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .form-row:focus-within {
+      border: 1.5px solid var(--secondary-blue);
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+    }
+    .form-row i {
+      color: var(--secondary-blue);
+      font-size: 1.1rem;
+      margin-right: 10px;
+      min-width: 22px;
+      text-align: center;
+    }
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      color: var(--black);
+      width: 100%;
+      padding: 10px 0;
+      outline: none;
+      font-family: inherit;
+      resize: none;
+      box-sizing: border-box;
+    }
+    .form-row textarea {
+      min-height: 80px;
+    }
+    .form-row input::placeholder,
+    .form-row textarea::placeholder {
+      color: #bbb;
+      font-size: 0.98rem;
+    }
+    .form-success {
+      display: none;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      color: var(--primary-blue);
+      border: 1px solid var(--accent-blue);
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    /* Footer */
+    .footer {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 40px 0;
+    }
+    .footer a {
+      color: var(--secondary-blue);
+      margin: 0 10px;
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+    .footer a:hover {
+      color: var(--white);
+    }
+    
+    /* Mobile Navigation Styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 60;
+      margin-left: auto;
+      min-width: 40px;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #f1f5f9;
+      margin: 3px 0;
+      transition: 0.3s ease;
+      border-radius: 2px;
+      transform-origin: center;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scale(0);
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      z-index: 50;
+      padding-top: 80px;
+      backdrop-filter: blur(10px);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    
+    .mobile-menu.active {
+      display: block;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .mobile-menu a {
+      display: block;
+      padding: 1.2rem 2rem;
+      color: #f1f5f9;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .mobile-menu a:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: #60a5fa;
+      padding-left: 2.5rem;
+    }
+    
+    .mobile-menu-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 55;
+      color: #f1f5f9;
+    }
+    
+    .mobile-menu-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+        position: relative;
+        right: 0;
+        margin-left: auto;
+        z-index: 60;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+      .hero-desc {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      .form-container {
+        margin: 20px;
+        padding: 20px;
+      }
+      
+      .hero-inner {
+        padding: 0 15px;
+      }
+      
+      .hero-image {
+        min-width: auto;
+        max-width: 100%;
+      }
+      
+      .benefit-card {
+        padding: 20px;
+        margin-bottom: 1rem;
+      }
+      
+      .step-card {
+        padding: 20px;
+        margin-bottom: 1rem;
+      }
+      
+      .requirement-item {
+        padding: 20px;
+        margin-bottom: 1rem;
+      }
+      
+      .earning-card {
+        padding: 20px;
+        margin-bottom: 1rem;
+      }
+      
+      .hero {
+        padding: 100px 0 40px 0;
+        min-height: 60vh;
+      }
+      
+      .hero-inner {
+        gap: 30px;
+        padding: 0 1rem;
+      }
+      
+      .hero-image {
+        max-width: 100%;
+        min-width: auto;
+      }
+      
+      .benefits, .how-it-works, .requirements, .earnings, .form-section {
+        padding: 60px 0;
+      }
+      
+      .max-w-7xl, .max-w-4xl {
+        padding: 0 1rem;
+      }
+      
+      .grid {
+        gap: 1.5rem;
+        width: 100%;
+      }
+      
+      .grid > * {
+        box-sizing: border-box;
+      }
+      
+      .text-4xl {
+        font-size: 2rem;
+      }
+      
+      .text-xl {
+        font-size: 1.1rem;
+      }
+      
+      .text-2xl {
+        font-size: 1.5rem;
+      }
+      
+      .btn-primary {
+        padding: 10px 24px;
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hamburger {
+        display: flex;
+        position: relative;
+        right: 0;
+        margin-left: auto;
+        z-index: 60;
+        padding: 6px;
+      }
+      
+      .hamburger span {
+        width: 22px;
+        height: 2px;
+      }
+      
+      .hero-title {
+        font-size: 1.75rem;
+      }
+      
+      .hero-desc {
+        font-size: 0.95rem;
+      }
+      
+      .form-container {
+        margin: 10px;
+        padding: 15px;
+      }
+      
+      .hero-inner {
+        padding: 0 10px;
+      }
+      
+      .hero-image {
+        min-width: auto;
+        max-width: 100%;
+      }
+      
+      .benefit-card, .step-card, .requirement-item, .earning-card {
+        padding: 15px;
+      }
+      
+      .hero {
+        padding: 80px 0 30px 0;
+      }
+      
+      .benefits, .how-it-works, .requirements, .earnings, .form-section {
+        padding: 40px 0;
+      }
+      
+      .text-4xl {
+        font-size: 1.75rem;
+      }
+      
+      .text-xl {
+        font-size: 1rem;
+      }
+      
+      .text-2xl {
+        font-size: 1.25rem;
+      }
+      
+      .btn-primary {
+        padding: 8px 20px;
+        font-size: 0.95rem;
+      }
+      
+      .form-row {
+        padding: 6px 10px;
+      }
+      
+      .form-row input,
+      .form-row textarea,
+      .form-row select {
+        font-size: 0.95rem;
+        padding: 8px 0;
+      }
+    }
+    
+    @media (max-width: 1024px) {
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        padding: 0 20px;
+      }
+      
+      .hero-content {
+        text-align: center;
+        max-width: 100%;
+      }
+      
+      .grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .grid-cols-2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .grid-cols-3 {
+        grid-template-columns: 1fr;
+      }
+      
+      .grid-cols-4 {
+        grid-template-columns: 1fr;
+      }
+      
+      .max-w-7xl, .max-w-4xl {
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="bg-gradient-to-r from-blue-900 to-blue-800 shadow-2xl fixed w-full top-0 z-40 navbar-enhanced">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
+      <div class="text-2xl font-bold text-white flex items-center">
+        <i class="fas fa-car text-blue-300 mr-2"></i>
+        <span class="bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">DriveConnect</span>
+      </div>
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="index.html" class="text-gray-200 hover:text-blue-300 transition-colors">Home</a>
+        <a href="#benefits" class="text-gray-200 hover:text-blue-300 transition-colors">Benefits</a>
+        <a href="#how-it-works" class="text-gray-200 hover:text-blue-300 transition-colors">How It Works</a>
+        <a href="#requirements" class="text-gray-200 hover:text-blue-300 transition-colors">Requirements</a>
+        <a href="#earnings" class="text-gray-200 hover:text-blue-300 transition-colors">Earnings</a>
+        <a href="#form" class="text-gray-200 hover:text-blue-300 transition-colors">Sign Up</a>
+      </div>
+      <!-- Mobile Menu Button -->
+      <div class="hamburger md:hidden" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+      <a href="index.html" onclick="closeMobileMenu()">Home</a>
+      <a href="#benefits" onclick="closeMobileMenu()">Benefits</a>
+      <a href="#how-it-works" onclick="closeMobileMenu()">How It Works</a>
+      <a href="#requirements" onclick="closeMobileMenu()">Requirements</a>
+      <a href="#earnings" onclick="closeMobileMenu()">Earnings</a>
+      <a href="#form" onclick="closeMobileMenu()">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" style="margin-top:10px;">
+    <div class="hero-inner">
+      <div class="hero-content" data-aos="fade-right">
+        <h1 class="hero-title animate__animated animate__fadeInDown">Become a Service Provider</h1>
+        <p class="hero-desc animate__animated animate__fadeInUp">
+          Join the largest network of trusted car wash & service providers and grow your business! 
+          <br>Get more bookings, manage your schedule, and boost your income with DriveConnect.
+        </p>
+        <a href="#form" class="btn-primary animate__animated animate__pulse animate__infinite">Start Earning Today</a>
+      </div>
+      <div class="hero-image animate__animated animate__zoomIn" data-aos="fade-left">
+        <img src="./assets/src/serviceprovider.jpg" alt="Professional Car Service Provider" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="benefits" class="benefits">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">Why Choose DriveConnect?</h2>
+        <p class="text-xl text-gray-600">Discover the advantages of partnering with India's leading car care platform</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-money-bill-wave"></i>
+          <h3 class="text-xl font-bold mb-3">Higher Earnings</h3>
+          <p>Earn 30-50% more compared to traditional car wash businesses with our competitive pricing model.</p>
+        </div>
+        
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-users"></i>
+          <h3 class="text-xl font-bold mb-3">Large Customer Base</h3>
+          <p>Access to 50,000+ verified customers actively looking for car care services in your area.</p>
+        </div>
+        
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-clock"></i>
+          <h3 class="text-xl font-bold mb-3">Flexible Schedule</h3>
+          <p>Work on your own terms - choose your hours, accept or decline bookings as per your availability.</p>
+        </div>
+        
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+          <i class="fas fa-shield-alt"></i>
+          <h3 class="text-xl font-bold mb-3">Secure Payments</h3>
+          <p>Get paid weekly through secure payment channels with no hidden fees or commission deductions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">How It Works</h2>
+        <p class="text-xl opacity-80">Get started in just 4 simple steps</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-number">1</div>
+          <h3 class="text-xl font-bold mb-3">Sign Up</h3>
+          <p>Complete our simple registration form with your basic details and service information.</p>
+        </div>
+        
+        <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number">2</div>
+          <h3 class="text-xl font-bold mb-3">Get Verified</h3>
+          <p>Submit required documents for verification. Our team will review within 24-48 hours.</p>
+        </div>
+        
+        <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-number">3</div>
+          <h3 class="text-xl font-bold mb-3">Start Receiving</h3>
+          <p>Once approved, start receiving booking requests from customers in your area.</p>
+        </div>
+        
+        <div class="step-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="step-number">4</div>
+          <h3 class="text-xl font-bold mb-3">Earn Money</h3>
+          <p>Complete services, get paid weekly, and grow your business with our support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements Section -->
+  <section id="requirements" class="requirements">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">Requirements to Join</h2>
+        <p class="text-xl text-gray-600">Ensure you meet these criteria to become a DriveConnect service provider</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div data-aos="fade-right">
+          <h3 class="text-2xl font-bold mb-6 text-blue-600">Essential Requirements</h3>
+          <div class="requirement-item">
+            <i class="fas fa-id-card"></i>
+            <strong>Valid ID Proof:</strong> Aadhar Card, PAN Card, or Driving License
+          </div>
+          <div class="requirement-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <strong>Service Area:</strong> Must be located in our service cities
+          </div>
+          <div class="requirement-item">
+            <i class="fas fa-phone"></i>
+            <strong>Active Phone:</strong> Working mobile number for customer communication
+          </div>
+          <div class="requirement-item">
+            <i class="fas fa-clock"></i>
+            <strong>Availability:</strong> Minimum 4 hours per day, 5 days a week
+          </div>
+        </div>
+        
+        <div data-aos="fade-left">
+          <h3 class="text-2xl font-bold mb-6 text-blue-600">Service Requirements</h3>
+          <div class="requirement-item">
+            <i class="fas fa-tools"></i>
+            <strong>Basic Equipment:</strong> Car wash supplies and cleaning materials
+          </div>
+          <div class="requirement-item">
+            <i class="fas fa-car"></i>
+            <strong>Transport:</strong> Ability to reach customer locations
+          </div>
+          <div class="requirement-item">
+            <i class="fas fa-certificate"></i>
+            <strong>Experience:</strong> Prior car care experience preferred
+          </div>
+          <div class="requirement-item">
+            <i class="fas fa-star"></i>
+            <strong>Quality Standards:</strong> Commitment to maintaining service quality
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Earnings Section -->
+  <section id="earnings" class="earnings">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">Potential Earnings</h2>
+        <p class="text-xl opacity-80">See how much you can earn with DriveConnect</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="earning-card" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold mb-4">Part-Time</h3>
+          <div class="amount">₹15,000</div>
+          <p class="mb-4">per month</p>
+          <ul class="text-sm opacity-80">
+            <li>• 2-3 hours daily</li>
+            <li>• 3-4 bookings per day</li>
+            <li>• Perfect for students</li>
+          </ul>
+        </div>
+        
+        <div class="earning-card" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold mb-4">Full-Time</h3>
+          <div class="amount">₹35,000</div>
+          <p class="mb-4">per month</p>
+          <ul class="text-sm opacity-80">
+            <li>• 6-8 hours daily</li>
+            <li>• 8-10 bookings per day</li>
+            <li>• Primary income source</li>
+          </ul>
+        </div>
+        
+        <div class="earning-card" data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-xl font-bold mb-4">Premium</h3>
+          <div class="amount">₹50,000+</div>
+          <p class="mb-4">per month</p>
+          <ul class="text-sm opacity-80">
+            <li>• 8+ hours daily</li>
+            <li>• 12+ bookings per day</li>
+            <li>• High-demand areas</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12" data-aos="fade-up">
+        <p class="text-lg opacity-80 mb-6">*Earnings may vary based on location, experience, and service quality</p>
+        <a href="#form" class="btn-primary">Start Your Journey</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Provider Form Section -->
+  <section id="form" class="form-section">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-4">Join Our Network</h2>
+        <p class="text-xl text-gray-600">Fill in your details and our team will get in touch within 24 hours</p>
+      </div>
+      
+      <div class="form-container" data-aos="fade-up">
+        <div class="form-success" id="form-success">
+          <i class="fas fa-check-circle mr-2"></i>
+          Thank you for your application! We will contact you within 24 hours.
+        </div>
+        
+        <form id="provider-form" autocomplete="off">
+          <div class="form-row">
+            <i class="fas fa-user"></i>
+            <input type="text" name="fullName" placeholder="Full Name" required />
+          </div>
+          
+          <div class="form-row">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="email" placeholder="Email Address" required />
+          </div>
+          
+          <div class="form-row">
+            <i class="fas fa-phone"></i>
+            <input type="tel" name="phone" placeholder="Phone Number" required />
+          </div>
+          
+          <div class="form-row">
+            <i class="fas fa-map-marker-alt"></i>
+            <select name="city" required>
+              <option value="">Select Your City</option>
+              <option value="delhi">Delhi</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="bangalore">Bangalore</option>
+              <option value="hyderabad">Hyderabad</option>
+              <option value="chennai">Chennai</option>
+              <option value="pune">Pune</option>
+              <option value="gurgaon">Gurgaon</option>
+              <option value="noida">Noida</option>
+            </select>
+          </div>
+          
+          <div class="form-row">
+            <i class="fas fa-tools"></i>
+            <select name="services" required>
+              <option value="">Select Services You Offer</option>
+              <option value="exterior-wash">Exterior Wash</option>
+              <option value="interior-cleaning">Interior Cleaning</option>
+              <option value="full-detailing">Full Detailing</option>
+              <option value="polish-wax">Polish & Wax</option>
+              <option value="engine-cleaning">Engine Cleaning</option>
+              <option value="all-services">All Services</option>
+            </select>
+          </div>
+          
+          <div class="form-row">
+            <i class="fas fa-clock"></i>
+            <select name="availability" required>
+              <option value="">Select Availability</option>
+              <option value="part-time">Part-Time (2-4 hours/day)</option>
+              <option value="full-time">Full-Time (6-8 hours/day)</option>
+              <option value="flexible">Flexible Hours</option>
+            </select>
+          </div>
+          
+          <div class="form-row">
+            <i class="fas fa-briefcase"></i>
+            <select name="experience" required>
+              <option value="">Years of Experience</option>
+              <option value="0-1">0-1 years</option>
+              <option value="1-3">1-3 years</option>
+              <option value="3-5">3-5 years</option>
+              <option value="5+">5+ years</option>
+            </select>
+          </div>
+          
+          <div class="form-row">
+            <i class="fas fa-comment"></i>
+            <textarea name="message" placeholder="Tell us about your experience and why you want to join DriveConnect (optional)" rows="4"></textarea>
+          </div>
+          
+          <button type="submit" class="btn-primary w-full text-lg py-4">
+            <i class="fas fa-paper-plane mr-2"></i>
+            Submit Application
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-blue-300">DriveConnect</h3>
+          <p class="text-gray-300">India's leading car care platform connecting customers with trusted service providers.</p>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-blue-300">Quick Links</h4>
+          <ul class="space-y-2 text-gray-300">
+            <li><a href="#" class="hover:text-blue-300 transition-colors">About Us</a></li>
+            <li><a href="#" class="hover:text-blue-300 transition-colors">How It Works</a></li>
+            <li><a href="#" class="hover:text-blue-300 transition-colors">Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-blue-300">Contact</h4>
+          <p class="text-gray-300 mb-2">Email: partners@driveconnect.in</p>
+          <p class="text-gray-300 mb-4">Phone: +91 98765 43210</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-300 hover:text-blue-300 transition-colors"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-300 hover:text-blue-300 transition-colors"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-300 hover:text-blue-300 transition-colors"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-300 hover:text-blue-300 transition-colors"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-blue-700 pt-8 text-center">
+        <p class="text-gray-300">&copy; 2025 DriveConnect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Form submission handling
+    document.getElementById('provider-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      // Basic validation
+      if (!data.fullName || !data.email || !data.phone || !data.city || !data.services || !data.availability || !data.experience) {
+        alert('Please fill in all required fields');
+        return;
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        alert('Please enter a valid email address');
+        return;
+      }
+      
+      // Phone validation
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(data.phone.replace(/\s/g, ''))) {
+        alert('Please enter a valid 10-digit phone number');
+        return;
+      }
+      
+      // Show success message
+      const successDiv = document.getElementById('form-success');
+      successDiv.style.display = 'block';
+      
+      // Reset form
+      this.reset();
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        successDiv.style.display = 'none';
+      }, 5000);
+      
+      // Log form data (replace with actual API call)
+      console.log('Form submitted:', data);
+      
+      // Here you would typically send the data to your backend
+      // fetch('/api/provider-registration', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(data)
+      // });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 100) {
+        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+      } else {
+        navbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
+      }
+    });
+
+    // Animate numbers on scroll
+    function animateNumbers() {
+      const numbers = document.querySelectorAll('.amount');
+      numbers.forEach(number => {
+        const target = parseInt(number.textContent.replace(/[^\d]/g, ''));
+        const increment = target / 100;
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          number.textContent = '₹' + Math.floor(current).toLocaleString();
+        }, 20);
+      });
+    }
+
+    // Trigger number animation when earnings section is visible
+    const earningsSection = document.querySelector('#earnings');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateNumbers();
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+    observer.observe(earningsSection);
+
+    // Mobile Menu Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const closeBtn = document.querySelector('.mobile-menu-close');
+      
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          mobileMenu.classList.toggle('active');
+          document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+      }
+      
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          closeMobileMenu();
+        });
+      }
+      
+      // Close menu when clicking outside
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+          closeMobileMenu();
+        }
+      });
+      
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+          closeMobileMenu();
+        }
+      });
+    });
+
+    // Close mobile menu function
+    function closeMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (hamburger && mobileMenu) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+  </script>
+</body>
+</html> 

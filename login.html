@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | DriveConnect</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-blue: #1e40af;
+      --secondary-blue: #3b82f6;
+      --accent-blue: #60a5fa;
+      --light-blue: #f8fafc;
+      --dark-blue: #1e293b;
+      --white: #fff;
+      --gray: #f1f5f9;
+      --gradient-blue: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-light: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fef7f0 0%, #fde8d4 100%);
+      color: var(--dark-blue);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+    }
+    
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .login-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+    }
+    
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-blue);
+    }
+    
+    .btn-primary {
+      background: var(--gradient-blue);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover, .btn-primary:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+    
+    .btn-google {
+      background: var(--white);
+      color: var(--dark-blue);
+      border: 2px solid #e2e8f0;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-google:hover {
+      border-color: var(--secondary-blue);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+      transform: translateY(-1px);
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: var(--white);
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: var(--secondary-blue);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 24px 0;
+      color: #64748b;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+    
+    .divider span {
+      padding: 0 16px;
+      font-size: 14px;
+    }
+    
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    
+    .shape {
+      position: absolute;
+      background: var(--gradient-blue);
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .shape:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .shape:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+    
+    .shape:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    @media (max-width: 768px) {
+      .login-container {
+        padding: 1rem;
+      }
+      
+      .login-card {
+        max-width: 100%;
+        margin: 0 1rem;
+      }
+      
+      .btn-primary,
+      .btn-google {
+        padding: 14px 20px;
+        font-size: 16px;
+      }
+      
+      .form-input {
+        padding: 14px 16px;
+        font-size: 16px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .login-card {
+        margin: 0 0.5rem;
+        border-radius: 16px;
+      }
+      
+      .btn-primary,
+      .btn-google {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+      
+      .form-input {
+        padding: 12px 14px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <div class="login-container">
+    <div class="login-card">
+      <!-- Header -->
+      <div class="text-center p-8 pb-6">
+        <div class="flex items-center justify-center mb-6">
+          <i class="fas fa-car text-3xl text-blue-600 mr-3"></i>
+          <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            DriveConnect
+          </h1>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Welcome Back</h2>
+        <p class="text-gray-600">Sign in to your account to continue</p>
+      </div>
+
+      <!-- Login Form -->
+      <div class="px-8 pb-8">
+        <!-- Google Sign In -->
+        <a href="#" class="btn-google w-full mb-6">
+          <i class="fab fa-google text-red-500"></i>
+          Continue with Google
+        </a>
+
+        <div class="divider">
+          <span>or continue with email</span>
+        </div>
+
+        <form class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+              <i class="fas fa-envelope text-blue-600 mr-2"></i>Email Address
+            </label>
+            <input type="email" class="form-input" placeholder="Enter your email" required>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+              <i class="fas fa-lock text-blue-600 mr-2"></i>Password
+            </label>
+            <input type="password" class="form-input" placeholder="Enter your password" required>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label class="flex items-center">
+              <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+              <span class="ml-2 text-sm text-gray-600">Remember me</span>
+            </label>
+            <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+              Forgot password?
+            </a>
+          </div>
+
+          <button type="submit" class="btn-primary w-full py-3 text-lg">
+            <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+          </button>
+        </form>
+
+        <!-- Register Link -->
+        <div class="text-center mt-6">
+          <p class="text-gray-600">
+            Don't have an account? 
+            <a href="register.html" class="text-blue-600 hover:text-blue-800 font-medium">
+              Sign up here
+            </a>
+          </p>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="text-center mt-4">
+          <a href="index.html" class="text-gray-500 hover:text-gray-700 text-sm">
+            <i class="fas fa-arrow-left mr-1"></i>Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Form submission handling
+    document.querySelector('form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const email = this.querySelector('input[type="email"]').value;
+      const password = this.querySelector('input[type="password"]').value;
+      
+      if (!email || !password) {
+        alert('Please fill in all fields');
+        return;
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return;
+      }
+      
+      // Login process
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Signing In...';
+      submitBtn.disabled = true;
+      
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Store token and user info
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          
+          // Redirect based on user role
+          switch(data.user.role) {
+            case 'client':
+              window.location.href = '/client-dashboard';
+              break;
+            case 'provider':
+              window.location.href = '/provider-dashboard';
+              break;
+            case 'admin':
+              window.location.href = '/admin-dashboard';
+              break;
+            default:
+              window.location.href = '/client-dashboard';
+          }
+        } else {
+          alert(data.error || 'Login failed');
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Login failed. Please try again.');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Google Sign In
+    document.querySelector('.btn-google').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Simulate Google OAuth
+      const btn = this;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Connecting...';
+      
+      // For demo purposes, simulate Google login with a test account
+      setTimeout(() => {
+        // You can implement actual Google OAuth here
+        // For now, we'll simulate a successful login
+        const mockUser = {
+          email: 'client@example.com',
+          password: 'password'
+        };
+        
+        // Auto-fill and submit the form
+        document.querySelector('input[type="email"]').value = mockUser.email;
+        document.querySelector('input[type="password"]').value = mockUser.password;
+        document.querySelector('form').dispatchEvent(new Event('submit'));
+      }, 1500);
+    });
+
+    // Add focus effects
+    document.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'scale(1.02)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'scale(1)';
+      });
+    });
+  </script>
+</body>
+</html> 

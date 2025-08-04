@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | DriveConnect</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-blue: #1e40af;
+      --secondary-blue: #3b82f6;
+      --accent-blue: #60a5fa;
+      --light-blue: #f8fafc;
+      --dark-blue: #1e293b;
+      --white: #fff;
+      --gray: #f1f5f9;
+      --gradient-blue: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-light: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fef7f0 0%, #fde8d4 100%);
+      color: var(--dark-blue);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+    }
+    
+    .register-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .register-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+    }
+    
+    .register-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-blue);
+    }
+    
+    .btn-primary {
+      background: var(--gradient-blue);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover, .btn-primary:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+    
+    .btn-google {
+      background: var(--white);
+      color: var(--dark-blue);
+      border: 2px solid #e2e8f0;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-google:hover {
+      border-color: var(--secondary-blue);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+      transform: translateY(-1px);
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: var(--white);
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: var(--secondary-blue);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    .role-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .role-option {
+      padding: 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: var(--white);
+      position: relative;
+    }
+    
+    .role-option:hover {
+      border-color: var(--secondary-blue);
+      transform: translateY(-2px);
+    }
+    
+    .role-option.selected {
+      border-color: var(--secondary-blue);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    }
+    
+    .role-option i {
+      font-size: 2rem;
+      color: var(--secondary-blue);
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 24px 0;
+      color: #64748b;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+    
+    .divider span {
+      padding: 0 16px;
+      font-size: 14px;
+    }
+    
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    
+    .shape {
+      position: absolute;
+      background: var(--gradient-blue);
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .shape:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .shape:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+    
+    .shape:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    @media (max-width: 768px) {
+      .register-container {
+        padding: 1rem;
+      }
+      
+      .register-card {
+        max-width: 100%;
+        margin: 0 1rem;
+      }
+      
+      .btn-primary,
+      .btn-google {
+        padding: 14px 20px;
+        font-size: 16px;
+      }
+      
+      .form-input {
+        padding: 14px 16px;
+        font-size: 16px;
+      }
+      
+      .role-selector {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .register-card {
+        margin: 0 0.5rem;
+        border-radius: 16px;
+      }
+      
+      .btn-primary,
+      .btn-google {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+      
+      .form-input {
+        padding: 12px 14px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <div class="register-container">
+    <div class="register-card">
+      <!-- Header -->
+      <div class="text-center p-8 pb-6">
+        <div class="flex items-center justify-center mb-6">
+          <i class="fas fa-car text-3xl text-blue-600 mr-3"></i>
+          <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            DriveConnect
+          </h1>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Create Account</h2>
+        <p class="text-gray-600">Join our community and get started</p>
+      </div>
+
+      <!-- Register Form -->
+      <div class="px-8 pb-8">
+        <!-- Google Sign Up -->
+        <a href="#" class="btn-google w-full mb-6">
+          <i class="fab fa-google text-red-500"></i>
+          Continue with Google
+        </a>
+
+        <div class="divider">
+          <span>or sign up with email</span>
+        </div>
+
+        <form class="space-y-4">
+          <!-- Role Selection -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-3">
+              <i class="fas fa-user-tag text-blue-600 mr-2"></i>I want to join as:
+            </label>
+            <div class="role-selector">
+              <div class="role-option" data-role="client">
+                <i class="fas fa-user"></i>
+                <div class="font-semibold text-gray-800">Client</div>
+                <div class="text-xs text-gray-600">Book car services</div>
+              </div>
+              <div class="role-option" data-role="provider">
+                <i class="fas fa-tools"></i>
+                <div class="font-semibold text-gray-800">Service Provider</div>
+                <div class="text-xs text-gray-600">Offer car services</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Name Fields -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                <i class="fas fa-user text-blue-600 mr-2"></i>First Name
+              </label>
+              <input type="text" class="form-input" placeholder="First name" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                <i class="fas fa-user text-blue-600 mr-2"></i>Last Name
+              </label>
+              <input type="text" class="form-input" placeholder="Last name" required>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+              <i class="fas fa-envelope text-blue-600 mr-2"></i>Email Address
+            </label>
+            <input type="email" class="form-input" placeholder="Enter your email" required>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+              <i class="fas fa-phone text-blue-600 mr-2"></i>Phone Number
+            </label>
+            <input type="tel" class="form-input" placeholder="Enter your phone number" required>
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+              <i class="fas fa-lock text-blue-600 mr-2"></i>Password
+            </label>
+            <input type="password" class="form-input" placeholder="Create a password" required>
+          </div>
+
+          <!-- Confirm Password -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+              <i class="fas fa-lock text-blue-600 mr-2"></i>Confirm Password
+            </label>
+            <input type="password" class="form-input" placeholder="Confirm your password" required>
+          </div>
+
+          <!-- Terms -->
+          <div class="flex items-start">
+            <input type="checkbox" class="mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500" required>
+            <label class="ml-2 text-sm text-gray-600">
+              I agree to the 
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Terms of Service</a>
+              and 
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Privacy Policy</a>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary w-full py-3 text-lg">
+            <i class="fas fa-user-plus mr-2"></i>Create Account
+          </button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="text-center mt-6">
+          <p class="text-gray-600">
+            Already have an account? 
+            <a href="login.html" class="text-blue-600 hover:text-blue-800 font-medium">
+              Sign in here
+            </a>
+          </p>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="text-center mt-4">
+          <a href="index.html" class="text-gray-500 hover:text-gray-700 text-sm">
+            <i class="fas fa-arrow-left mr-1"></i>Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Role selection
+    document.querySelectorAll('.role-option').forEach(option => {
+      option.addEventListener('click', function() {
+        // Remove selected class from all options
+        document.querySelectorAll('.role-option').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+        
+        // Add selected class to clicked option
+        this.classList.add('selected');
+        
+        // Store selected role
+        window.selectedRole = this.dataset.role;
+      });
+    });
+
+    // Form submission handling
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const firstName = this.querySelector('input[placeholder="First name"]').value;
+      const lastName = this.querySelector('input[placeholder="Last name"]').value;
+      const email = this.querySelector('input[type="email"]').value;
+      const phone = this.querySelector('input[type="tel"]').value;
+      const password = this.querySelector('input[type="password"]').value;
+      const confirmPassword = this.querySelectorAll('input[type="password"]')[1].value;
+      const terms = this.querySelector('input[type="checkbox"]').checked;
+      const role = window.selectedRole;
+      
+      // Validation
+      if (!firstName || !lastName || !email || !phone || !password || !confirmPassword) {
+        alert('Please fill in all fields');
+        return;
+      }
+      
+      if (!role) {
+        alert('Please select a role');
+        return;
+      }
+      
+      if (!terms) {
+        alert('Please agree to the Terms of Service and Privacy Policy');
+        return;
+      }
+      
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+      
+      if (password.length < 6) {
+        alert('Password must be at least 6 characters long');
+        return;
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return;
+      }
+      
+      // Phone validation
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+        alert('Please enter a valid 10-digit phone number');
+        return;
+      }
+      
+      // Registration process
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Creating Account...';
+      submitBtn.disabled = true;
+      
+      try {
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email,
+            password,
+            name: `${firstName} ${lastName}`,
+            phone,
+            role
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Store token and user info
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          
+          // Redirect based on selected role
+          switch(data.user.role) {
+            case 'client':
+              window.location.href = '/client-dashboard';
+              break;
+            case 'provider':
+              window.location.href = '/provider-dashboard';
+              break;
+            default:
+              window.location.href = '/client-dashboard';
+          }
+        } else {
+          alert(data.error || 'Registration failed');
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
+        alert('Registration failed. Please try again.');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Google Sign Up
+    document.querySelector('.btn-google').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Simulate Google OAuth
+      const btn = this;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Connecting...';
+      
+      setTimeout(() => {
+        // Redirect to appropriate dashboard
+        window.location.href = 'client-dashboard.html';
+      }, 1500);
+    });
+
+    // Add focus effects
+    document.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'scale(1.02)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'scale(1)';
+      });
+    });
+
+    // Password strength indicator
+    document.querySelector('input[type="password"]').addEventListener('input', function() {
+      const password = this.value;
+      const strength = calculatePasswordStrength(password);
+      
+      // You can add visual feedback here
+      if (password.length > 0) {
+        this.style.borderColor = strength.color;
+      } else {
+        this.style.borderColor = '#e2e8f0';
+      }
+    });
+
+    function calculatePasswordStrength(password) {
+      let score = 0;
+      
+      if (password.length >= 8) score++;
+      if (/[a-z]/.test(password)) score++;
+      if (/[A-Z]/.test(password)) score++;
+      if (/[0-9]/.test(password)) score++;
+      if (/[^A-Za-z0-9]/.test(password)) score++;
+      
+      if (score < 2) return { color: '#ef4444' }; // Red
+      if (score < 4) return { color: '#f59e0b' }; // Yellow
+      return { color: '#10b981' }; // Green
+    }
+  </script>
+</body>
+</html> 
